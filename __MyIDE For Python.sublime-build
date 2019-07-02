@@ -1,0 +1,16 @@
+{
+  "cmd": ["echo", "Choose an option!"],
+  "shell": true,
+  "working_dir": "${file_path}",
+  "selector": "source.py",
+  "variants": [
+    {
+      "name": "[Python2] Run on CMD",
+      "cmd": ["start", "cmd", "/k", "python", "${file_name}"]
+    },
+    {
+      "name": "[Python3] Run on CMD",
+      "cmd": ["start", "cmd", "/k", "python3", "${file_name}"]
+    }
+  ]
+}

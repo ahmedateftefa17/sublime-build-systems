@@ -1,0 +1,69 @@
+{
+  "cmd": ["echo", "Choose an option!"],
+  // "cmd" : ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "&&", "${file_path}/${file_base_name}.exe<../Testing/input.s17>../Testing/output.s17", "&&", "myCorrector", "${file_path}/../Testing/output.s17", "${file_path}/../Testing/correct.s17", "${file_path}/../Testing/result.s17"],
+  "shell": true,
+  "working_dir": "${file_path}",
+  "selector": "source.c, source.cpp, source.c++",
+  "variants": [
+    {
+      "name": "Run on CMD [Global]",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-fopenmp", "-march=native", "&&", "start", "/wait", "cmd", "/k", "${file_base_name}.exe"]
+    },
+    {
+      "name": "Run on CMD [Normal]",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "&&", "start", "cmd", "/k", "${file_base_name}.exe"]
+    },
+    {
+      "name": "Run on CMD [OpenMP]",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-fopenmp", "&&", "start", "cmd", "/k", "${file_base_name}.exe"]
+    },
+    {
+      "name": "Run on CMD [AVX]",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-march=native", "&&", "start", "cmd", "/k", "${file_base_name}.exe"]
+    },
+    {
+      "name": "[Normal] Compile and Get Output",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "&&", "${file_base_name}.exe<Testing/input.s17>Testing/output.s17", "&&", "subl", "Testing/output.s17"]
+    },
+    {
+      "name": "[Normal] Compile, Get Output and Results",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "&&", "${file_base_name}.exe<Testing/input.s17>Testing/output.s17", "&&", "myCorrector", "${file_path}/Testing/output.s17", "${file_path}/Testing/correct.s17", "${file_path}/Testing/result.s17", "&&", "subl", "Testing/result.s17"]
+    },
+    {
+      "name": "[Normal] Compile Only",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14"],
+    },
+    {
+      "name": "[OpenMP] Compile and Get Output",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-fopenmp", "&&", "${file_base_name}.exe<Testing/input.s17>Testing/output.s17", "&&", "subl", "Testing/output.s17"]
+    },
+    {
+      "name": "[OpenMP] Compile, Get Output and Results",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-fopenmp", "&&", "${file_base_name}.exe<Testing/input.s17>Testing/output.s17", "&&", "myCorrector", "${file_path}/Testing/output.s17", "${file_path}/Testing/correct.s17", "${file_path}/Testing/result.s17", "&&", "subl", "Testing/result.s17"]
+    },
+    {
+      "name": "[OpenMP] Compile Only",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-fopenmp"],
+    },
+    {
+      "name": "[AVX] Compile and Get Output",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-march=native", "&&", "${file_base_name}.exe<Testing/input.s17>Testing/output.s17", "&&", "subl", "Testing/output.s17"]
+    },
+    {
+      "name": "[AVX] Compile, Get Output and Results",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-march=native", "&&", "${file_base_name}.exe<Testing/input.s17>Testing/output.s17", "&&", "myCorrector", "${file_path}/Testing/output.s17", "${file_path}/Testing/correct.s17", "${file_path}/Testing/result.s17", "&&", "subl", "Testing/result.s17"]
+    },
+    {
+      "name": "[AVX] Compile Only",
+      "cmd": ["g++", "${file_name}", "-o", "${file_base_name}.exe", "-std=c++14", "-march=native"],
+    },
+    {
+      "name": "Get Output Only",
+      "cmd": ["${file_base_name}.exe<Testing/input.s17>Testing/output.s17", "&&", "subl", "Testing/output.s17"]
+    },
+    {
+      "name": "Get Results Only",
+      "cmd": ["myCorrector", "${file_path}/Testing/output.s17", "${file_path}/Testing/correct.s17", "${file_path}/Testing/result.s17", "&&", "subl", "Testing/result.s17"]
+    }
+  ]
+}

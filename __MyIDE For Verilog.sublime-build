@@ -1,0 +1,39 @@
+{
+  "cmd": ["echo", "Choose an option!"],
+  "shell": true,
+  "working_dir": "${file_path}",
+  "selector": "source.v",
+  "variants": [
+    {
+      "name": "Compile Only",
+      "cmd": ["iverilog", "-o", "compiled", "*.v"],
+    },
+    {
+      "name": "Compile and Get Output",
+      "cmd": ["iverilog", "-o", "compiled", "*.v",
+          "&&", "vvp", "compiled", ">", "output.txt",
+          "&&", "subl", "output.txt"]
+    },
+    {
+      "name": "Compile, Get Output, Get Waves",
+      "cmd": ["iverilog", "-o", "compiled", "*.v",
+          "&&","vvp", "compiled", ">", "output.txt",
+          "&&", "subl", "output.txt",
+          "&&", "gtkwave" , "dump.vcd"]
+    },
+    {
+      "name": "Get Output, Get Waves",
+      "cmd": ["vvp", "compiled", ">", "output.txt",
+          "&&", "subl", "output.txt",
+          "&&", "gtkwave" , "dump.vcd"]
+    },
+    {
+      "name": "Get Waves",
+      "cmd": ["gtkwave" , "dump.vcd"]
+    },
+    {
+      "name": "Kill All GTKwaves",
+      "cmd": ["taskkill", "/f", "/im", "gtkwave.exe"]
+    },
+  ]
+}
